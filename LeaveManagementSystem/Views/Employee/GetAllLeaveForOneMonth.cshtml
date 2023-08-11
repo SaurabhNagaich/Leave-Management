@@ -1,0 +1,74 @@
+﻿@model IEnumerable<LeaveManagementSystem.Models.Leave>
+
+@{
+    ViewData["Title"] = "GetAllLeave";
+}
+
+<div class="user-container">
+    <div class="table-container">
+        <table id="leavetbl" class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th id="leaveDate">
+                        @Html.DisplayNameFor(model => model.LeaveDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LeaveType)
+
+                    </th>
+                    
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr style="font-size:17px; font-weight:600">
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeaveDate)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LeaveType)
+                        </td>
+                    
+                        <td>
+                            @Html.ActionLink("Edit", "EditLeave", new {  id=item.LeaveId }) |
+                            @Html.ActionLink("Delete", "Delete", new {  id=item.LeaveId },new { onclick = "return confirm('Are sure you wants to delete this leave request ?');"})
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="get-All-Leave-btn">
+        <div style="margin-right:10px;">
+         <a class="btn btn-primary"  asp-action="AddLeaveRequest">Add Leave Request </a>
+       </div>
+
+       <div>
+         <a class="btn btn-primary" asp-action="GetAllLeaveForOneMonth">Next 30 Days Leave</a>
+       </div>
+    </div>
+  
+</div>
+<script>
+    var table = document.getElementById("leavetbl");
+    for (var i = 0; i < table.rows.length; i++) {
+        var d = new Date(table.rows[i].cells[1].innerHTML).getDate();
+
+        var difference = new Date().getDate();
+        console.log(d)
+        console.log(difference)
+        if (d == difference)
+            table.rows[i].style.background = "MistyRose";
+    }
+</script>

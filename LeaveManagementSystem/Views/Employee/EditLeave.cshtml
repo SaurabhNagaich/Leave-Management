@@ -1,0 +1,59 @@
+﻿@model LeaveManagementSystem.Models.Leave
+
+@{
+    ViewData["Title"] = "EditLeave";
+}
+<div class="add-leave-request-container">
+<h2>Edit Leave Request</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+            <form asp-action="EditLeave" class="add-leave-container">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                <div class="form-group form-group-self">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group form-group-self">
+                    <label asp-for="LeaveDate" class="control-label"></label>
+                    <input asp-for="LeaveDate" class="form-control" />
+                    <span asp-validation-for="LeaveDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-group-self">
+                    <label asp-for="ReasonForLeave" class="control-label"></label>
+                    <input asp-for="ReasonForLeave" class="form-control" />
+                    <span asp-validation-for="ReasonForLeave" class="text-danger"></span>
+                </div>
+
+                <label class="control-label">Leave Type</label>
+                <div class="form-group form-group-self" style="display:flex; ">
+                    <div class="radio" style="margin-right:10px;">
+                        <label>
+                            @Html.RadioButtonFor(model => model.LeaveType, "Full Day", new { @class = "radio-inline" }) Full Day
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            @Html.RadioButtonFor(model => model.LeaveType, "Half Day", new { @class = "radio-inline" }) Half Day
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="form-group form-group-self">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+        <a asp-action="GetAllLeave">Back to List</a>
+</div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

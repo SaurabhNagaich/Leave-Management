@@ -1,0 +1,134 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LeaveManagementSystem</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/LeaveManagementSystem.styles.css" asp-append-version="true" />
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
+          rel="stylesheet" />
+
+</head>
+<body>
+    <!--Main Navigation-->
+    <header>
+        <!-- Sidebar -->
+        <!-- Navbar -->
+        <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+            <!-- Container wrapper -->
+            <div class="header-container">
+                <!-- Brand -->
+                <div class="header-logo-img">
+                    <a class="navbar-brand" href="#">
+                        <img src="https://cdn.pixabay.com/photo/2020/03/17/17/46/database-4941338_640.png" height="25" alt="MDB Logo" style="width:55px ; height:55px"
+                             loading="lazy" />
+                    </a>
+                </div>
+
+                <div>
+                    <label class="header-label">Welcome Team SQL </label>
+                </div>
+            </div>
+            <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <!--Main Navigation-->
+    <!--Main layout-->
+    <main style="margin-top: 80px;">
+        <div style="display:flex" style="background-color:#f0f1f2" ">
+            <!-- Sidebar -->
+            <div style="width:55% ;height:825px;">
+                    <div class="position-sticky" style="">
+                            <table class="link-tbl">
+                                <thead>
+                                  <tr>
+                                    <th>Website Name</th>
+                                    <th>Link</th>
+                                  </tr>
+                                </thead>
+                                <tr>
+                                    <td class="link-tbl-site-name"> LMS : </td>
+                                    <td><a id="td_link" href="https://learning.corecard.in/" target="_blank" rel="noopener">https://learning.corecard.in/</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="link-tbl-site-name"> People Strong : </td>
+                                    <td><a id="td_link" href="https://corecard.peoplestrong.com/altLogin.jsf" target="_blank" rel="noopener">https://corecard.peoplestrong.com/altLogin.jsf</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="link-tbl-site-name">Request Tracker : </td>
+                                    <td><a id="td_link" href="http://10.80.2.6/" target="_blank" rel="noopener">http://10.80.2.6/</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="link-tbl-site-name"> Project Management : </td>
+                                    <td><a id="td_link" href="http://10.80.2.7/Login.aspx" target="_blank" rel="noopener">http://10.80.2.7/Login.aspx</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="link-tbl-site-name"> Odoo : </td>
+                                    <td><a id="td_link" href="http://my-icon/web#action=168&cids=1&id=17119&menu_id=138&model=hr.employee.public&view_type=form" target="_blank" rel="noopener">http://my-icon/web#action=168&cids=1&id=17119&menu_id=138&model=hr.employee.public&view_type=form</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="link-tbl-site-name"> Release Management Package : </td>
+                                    <td><a id="td_link" href="https://rmp.corecard.in/login" target="_blank" rel="noopener">https://rmp.corecard.in/login</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="link-tbl-site-name"> Change Management Form System : </td>
+                                    <td><a id="td_link" href="http://10.80.2.8/default.aspx?url=/bugs.aspx&qs=" target="_blank" rel="noopener">http://10.80.2.8/default.aspx?url=/bugs.aspx&qs=</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="link-tbl-site-name"> JIRA : </td>
+                            <td><a id="td_link" href="JiraRelatedDetails.xlsx" target="_blank" rel="noopener">https://corecard.atlassian.net/jira/projects?selectedProjectType=software</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="link-tbl-site-name"> SharePoint location of Python training : </td>
+                            <td><a id="td_link" href="https://corecard1.sharepoint.com/:f:/s/SQLTeam2/EkuErcPFw8FEvBo6S4Z405oBWtMIpafzo_atwmA5zacQkQ?e=yzKrfk" target="_blank" rel="noopener">https://corecard1.sharepoint.com/:f:/s/SQLTeam2/EkuErcPFw8FEvBo6S4Z405oBWtMIpafzo_atwmA5zacQkQ?e=yzKrfk</a></td>
+                                </tr>
+                        <tr>
+                            <td class="link-tbl-site-name"> SSIS JavatPoint : </td>
+                            <td><a id="td_link" href="https://www.javatpoint.com/ssis" target="_blank" rel="noopener">https://www.javatpoint.com/ssis</a></td>
+                        </tr>
+
+                            </table>
+                    </div>
+               
+            </div>
+            <div style="height:825px;width:45%;">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </main>
+    <!--Main layout-->
+
+    <footer class="bg-light text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2023 Copyright:
+            <a class="text-dark" href="https://mdbootstrap.com/">TeamSQL</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- MDB -->
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
+
+
+

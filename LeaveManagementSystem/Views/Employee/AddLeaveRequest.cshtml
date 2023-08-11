@@ -1,0 +1,149 @@
+﻿@model LeaveManagementSystem.Models.Leave
+
+@{
+    ViewData["Title"] = "AddLeaveRequest";
+} 
+<body>
+    <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="Stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+</body>
+
+<div class="add-leave-request-container">
+<h2>Add Leave Request</h2>
+<div class="row">
+    <div class="col-md-4 ">
+            <form asp-action="AddLeaveRequest" id="leaveForm" class="add-leave-container">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group form-group-self">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" required/>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-group-self">
+                    <label asp-for="LeaveStartDate" class="control-label"></label>
+                    <input asp-for="LeaveStartDate" type="date" class="form-control" id="inputdate" required />
+                    <span asp-validation-for="LeaveStartDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-group-self">
+                    <label asp-for="LeaveEndDate" class="control-label"></label>
+                    <input asp-for="LeaveEndDate" type="date" class="form-control" id="inputdate2" required disabled />
+                    <span asp-validation-for="LeaveEndDate" class="text-danger"></span>
+                </div>
+
+                <label class="control-label">Leave Type</label>
+                <div class="form-group form-group-self" style="display:flex; ">
+                    <div class="radio" style="margin-right:10px;">
+                        <label>
+                            @Html.RadioButtonFor(model => model.LeaveType, "Full Day", new { @class = "radio-inline" }) Full Day
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            @Html.RadioButtonFor(model => model.LeaveType, "Half Day", new { @class = "radio-inline" }) Half Day
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group form-group-self">
+                    <label asp-for="ReasonForLeave" class="control-label"></label>
+                    <input asp-for="ReasonForLeave" class="form-control" required/>
+                    <span asp-validation-for="ReasonForLeave" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-group-self">
+                    <input type="submit" value="Create" class="btn btn-primary" id="createButton" />
+                </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+        <a asp-action="GetAllLeave">Back to List</a>
+</div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script type="text/javascript">
+    $(function () {
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var maxDate = year + '-' + month + '-' + day;
+
+
+        $('#inputdate').attr('min', maxDate);
+        $('#inputdate2').attr('min', maxDate);
+
+        // Get the input elements for LeaveStartDate and LeaveEndDate
+        const leaveStartDateInput = document.getElementById("inputdate");
+        const leaveEndDateInput = document.getElementById("inputdate2");
+
+        // Add event listener to LeaveStartDate input
+        leaveStartDateInput.addEventListener("change", function () {
+            // Enable LeaveEndDate when LeaveStartDate is selected
+            leaveEndDateInput.removeAttribute("disabled");
+            // Set min attribute of LeaveEndDate to the selected LeaveStartDate
+            leaveEndDateInput.setAttribute("min", leaveStartDateInput.value);
+        });
+
+        // Add event listener to LeaveEndDate input
+        leaveEndDateInput.addEventListener("change", function () {
+            // Ensure LeaveEndDate is greater than or equal to LeaveStartDate
+            if (leaveEndDateInput.value < leaveStartDateInput.value) {
+                alert("Leave End Date must be greater than or equal to Leave Start Date.");
+                leaveEndDateInput.value = leaveStartDateInput.value;
+            }
+        });
+    });
+
+   // ========================= for PopUp ======================
+
+    // Get the Create button
+    const createButton = document.getElementById("createButton");
+
+    // Add an event listener for the button click
+    createButton.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Perform any form validation here if needed
+
+        // Use AJAX to submit the form data to the server
+        const form = document.getElementById("leaveForm"); // Replace "yourFormId" with the ID of your form
+        const formData = new FormData(form);
+        fetch(form.action, {
+            method: form.method,
+            body: formData
+        })
+            .then(response => {
+                if (response.ok) {
+                    // Form submission was successful, show the popup
+                    showPopup();
+                    form.reset(); // Optionally, reset the form after successful submission
+                } else {
+                    // Handle errors if needed
+                }
+            })
+            .catch(error => {
+                // Handle any errors that occur during form submission
+                console.error('Error:', error);
+            });
+    });
+
+    // Function to show the popup
+    function showPopup() {
+        alert("Leave request summited successfully!");
+    }
+
+
+</script>
